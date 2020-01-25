@@ -1,0 +1,22 @@
+.form-container{
+  margin-top: 100px;
+  .form-inputs, .form-submit-btn{
+    display: block;
+    margin: auto;
+    margin-top:10px;
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+  }
+   select{
+     width: 320px!important;
+   }
+  .form-submit-btn{
+    width: 200px;
+    cursor: pointer;
+  }
+}

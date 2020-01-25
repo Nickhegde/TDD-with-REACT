@@ -1,9 +1,17 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { shallow } from 'enzyme';
 import App from './App';
+import { InputForm } from 'components';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+describe('App component', () => {
+  it('showForm equals to true when the App-link  button is clicked ', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('header').length === 1);
+    const Btn = wrapper.find('div.App-link');
+    Btn.simulate('click');
+    expect(wrapper.find('header').length === 0);
+    expect(wrapper).toMatchSnapshot();
+  });
 });
