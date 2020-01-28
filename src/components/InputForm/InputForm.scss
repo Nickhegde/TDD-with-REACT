@@ -1,6 +1,6 @@
 .form-container{
   margin-top: 100px;
-  .form-inputs, .form-submit-btn{
+  .form-inputs, .form-submit-btn, .form-upload-btn{
     display: block;
     margin: auto;
     margin-top:10px;
@@ -18,5 +18,17 @@
   .form-submit-btn{
     width: 200px;
     cursor: pointer;
+  }
+  .form-upload-btn{
+    width: 200px;
+    cursor: pointer;
+  }
+  .error-msg{
+    color: red;
+    text-align: left;
+    font-size: 12px;
+    width: 300px;
+    margin: auto;
+    margin-top: 5px;
   }
 }

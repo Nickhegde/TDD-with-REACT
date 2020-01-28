@@ -1,3 +1,4 @@
 export default {
-  SUBMIT: 'Submit'
+  SUBMIT: 'Submit',
+  CSV_UPLOAD: 'Upload CSV'
 }
