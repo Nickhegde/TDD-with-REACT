@@ -1,3 +1,11 @@
+# TDD-with-REACT
+A sample React project with test cases.
+
+### About
+This is simple application which uses react-hook-form which makes form easy to submit and handle errors. It also makes pattern matching simple and pattern error message can be given separately. The test cases are written using enzyme.
+This application is still under develeopement and all the test cases might not be covered yet.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
