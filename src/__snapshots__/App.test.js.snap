@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component showForm equals to true when the App-link  button is clicked  1`] = `ShallowWrapper {}`;
