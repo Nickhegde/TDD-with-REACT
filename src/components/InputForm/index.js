@@ -7,13 +7,15 @@ import './InputForm.scss';
 
 export default function InputForm() {
   const { register, handleSubmit, watch, errors } = useForm();
+  const [formData, setFormData] = useState('');
 
 
   const onSubmit = (data) => {
-    console.log(data);
-    const result = axios.post('http://172.16.2.66:8080/profile/upload-csv', formData, { 'Content-Type': 'multipart/form-data' });
+    axios.post('http://localhost:8000/upload', formData, {
+    }).then(res => { // then print response status
+      console.log(res.statusText)
+    })
   };
-  const [formData, setFormData] = useState('');
 
   const selectCSVFile = event => {
     const formDataVal = new FormData();
@@ -22,10 +24,8 @@ export default function InputForm() {
       event.target.files[0],
       event.target.files[0].name
     );
-    // console.log("{ formDataVal }", formDataVal.getAll('file'))
-    setFormData({ formDataVal });
+    setFormData(formDataVal);
   };
-  // console.log("formData", formData);
   return (
     <form className='form-container' onSubmit={handleSubmit(onSubmit)}>
       <input className='form-inputs first-name' name="firstName" placeholder="First Name" ref={register({ required: true, maxlength: 20 })} />
