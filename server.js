@@ -3,6 +3,7 @@ var app = express();
 var multer = require('multer')
 var cors = require('cors');
 const path = require('path');
+const fs = require('fs')
 
 app.use(cors());
 
@@ -21,13 +22,22 @@ var storage = multer.diskStorage({
     cb(null, 'public')
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
+    cb(null, 'resume.csv')
   }
 })
 
 var upload = multer({ storage: storage }).single('file');
 
 app.post('/upload', function (req, res) {
+  const path = __dirname + '/public/resume.csv';
+  fs.unlink(path, (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    //file removed
+  })
 
   upload(req, res, function (err) {
     if (err instanceof multer.MulterError) {
