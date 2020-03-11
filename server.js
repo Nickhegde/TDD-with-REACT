@@ -22,20 +22,18 @@ var storage = multer.diskStorage({
     cb(null, 'public')
   },
   filename: function (req, file, cb) {
-    cb(null, 'resume.csv')
+    cb(null, 'resume.pdf')
   }
 })
 
 var upload = multer({ storage: storage }).single('file');
 
 app.post('/upload', function (req, res) {
-  const path = __dirname + '/public/resume.csv';
+  const path = __dirname + '/public/resume.pdf';
   fs.unlink(path, (err) => {
     if (err) {
       console.error(err)
-      return
     }
-
     //file removed
   })
 

@@ -1,8 +1,13 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import ReactDOM from 'react-dom';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { shallow, mount } from 'enzyme';
 import { InputForm } from 'components';
 import { spy } from 'sinon';
+import { act } from 'react-dom/test-utils';
+import MutationObserver from 'mutation-observer';
+import { useForm } from 'react-hook-form';
+global.MutationObserver = MutationObserver
 
 describe('InputForm component', () => {
   const wrapper = shallow(<InputForm />);
@@ -43,7 +48,7 @@ describe('InputForm component', () => {
     expect(mobile.value === 100000000);
   });
 
-  it('Submit form by filling all required fields', () => {
+  it('Submit form by filling all required fields', async () => {
     const form = wrapper.find('form'),
       firstName = wrapper.find('input.first-name'),
       lastName = wrapper.find('input.last-name'),
@@ -53,13 +58,17 @@ describe('InputForm component', () => {
     lastName.value = 'test last name';
     age.value = 10;
     mobile.value = 1000000000;
-    form.simulate('submit');
   })
 
-  it('Submit input form without entering any fileds adn check for error messages', async () => {
-    const form = wrapper.find('form');
-    form.simulate('submit');
-    console.log("div", form.find('div.first-name-error').html())
+  it('Submit input form without entering any fileds and check for error messages', async () => {
+    const onSubmit = jest.fn();
+    const { getByPlaceholderText, getByTestId } = render(<InputForm onSubmit={onSubmit} />)
+    fireEvent.change(screen.getByPlaceholderText('First Name'), {
+      target: { value: 'chuck' },
+    })
 
+    await act(async () => { await fireEvent.click(screen.getByTestId('form')) })
+    wrapper.update();
+    await console.log("error", wrapper.find('form').html())
   });
 });
